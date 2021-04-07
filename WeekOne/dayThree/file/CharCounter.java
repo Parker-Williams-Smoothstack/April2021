@@ -51,7 +51,9 @@ public class CharCounter {
 					total++;
 			}
 			System.out.println("The total number of times " + lookFor + " appears in " + startingDirectory.getPath()
-					+ " is " + total);
+					+ " is " + total); // Appears to count upper and lower case as the same thing. Check requirements
+										// to see if this is
+			// acceptable behavior or not
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

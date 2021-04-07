@@ -24,9 +24,11 @@ public class TextAppender {
 	 * @throws FileNotFoundException
 	 */
 	public static void main(String[] args) {
+		final boolean ADD_LINES = false;
 		// make sure file is given, instruct on usage and terminate if missing
 		if (args.length != 1) {
 			System.err.println("Invalid arguments. Usage: java TextAppender [file]");
+			System.exit(0);
 		}
 
 		File startingDirectory = new File(args[0]);
@@ -42,17 +44,20 @@ public class TextAppender {
 
 		// prompt user for strings to appends
 		Scanner input = new Scanner(System.in);
-		String line;
+		StringBuilder line;
 		System.out.println(
 				"Please enter your text. Press enter to move to the next line.\nEnter a blank line (or press enter twice) to terminate.");
 		while (true) {
-			line = input.nextLine();
+			line = new StringBuilder();	//let the old StringBuilder get taken by garbage collection, quickest way to clear the string
+			line.append(input.nextLine());
 
-			if (line.equals("")) // terminate when user enters blank line. ONLY WAY TO END, DO NOT COMMENT OUT
+			if (line.toString().equals("")) // terminate when user enters blank line. ONLY WAY TO END, DO NOT COMMENT OUT
 				break; // STOPS INFINITE LOOP, DO NOT COMMENT OUT WITHOUT CHANGING LOOP CONDITION
 
 			try {
-				Files.write(Paths.get(startingDirectory.toURI()), line.getBytes(), StandardOpenOption.APPEND);
+				if(ADD_LINES)
+					line.append("\n");
+				Files.write(Paths.get(startingDirectory.toURI()), line.toString().getBytes(), StandardOpenOption.APPEND);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
