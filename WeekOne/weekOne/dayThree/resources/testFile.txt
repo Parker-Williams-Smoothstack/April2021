@@ -1,0 +1,1 @@
+This is an example file to be written to.This text was added using the TextAppender.java program.As was this line.This is added after the change to StringBuilder.

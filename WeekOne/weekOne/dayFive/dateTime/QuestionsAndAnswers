@@ -1,0 +1,17 @@
+1) Which class would you use to store your birthday in years, months, days, seconds, and nanoseconds?
+	I would use the LocalDataTime class as it stores all of these values while keeping it in a easily human-readible format
+	
+2) Given a random date, how would you find the date of the previous Thursday?
+	I would use a combination of a for-loop, the .minusDays() method, and the .getDayOfWeek() method
+	ex: for(int i = 0; i < 7; i++)
+			if(givenDate.minusDays(i).getDayOfWeek() == DayOfWeek.THURSDAY)
+				return givenDate.minusDays(i)
+
+3) What is the difference between a ZoneId and a ZoneOffset?
+	ZoneId is the super class of ZoneOffset. ZoneOffset is simply the time zone difference of a Time zone from UTC while ZoneId controls
+	the logic for converting time zones and information on the zone such as the location/region (like Europe/Paris)
+	
+4) How would you convert an Instant to a ZonedDateTime? How would you convert a ZonedDateTime to an Instant?
+	Java has numerous built in methods to convert from an Instant to a ZonedDateTime such as ofInstance(Instant instant, ZoneId zone)
+	ZonedDateTime also inherits the toInstant method to convert itself into an Instant
+	
