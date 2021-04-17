@@ -38,4 +38,10 @@ public class RouteDAO extends AbstractDAO<Route> {
 		
 	}
 
+	@Override
+	public List<Route> getAll() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

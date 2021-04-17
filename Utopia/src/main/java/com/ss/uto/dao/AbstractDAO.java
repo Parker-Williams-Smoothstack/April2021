@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public abstract class AbstractDAO<T> {
 	 * @throws SQLException
 	 */
 	public Integer addPK(String query, Object... vals) throws ClassNotFoundException, SQLException {
-		PreparedStatement stmt = conn.prepareStatement(query);
+		PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 		int count = 1;
 		for (Object o : vals) {
 			stmt.setObject(count++, o);
@@ -64,7 +65,9 @@ public abstract class AbstractDAO<T> {
 
 	/**
 	 * Takes the given query with any parameters and returns the table as a list of
-	 * objects.
+	 * objects. Child classes that need to have specific criteria should call this
+	 * method. For example, AirportDAO should call getData("Select * from airport
+	 * where iata_id = ?", "JFK")
 	 * 
 	 * @param query the query to execute
 	 * @param vals  the parameters the query needs
@@ -88,7 +91,7 @@ public abstract class AbstractDAO<T> {
 	 * @param rs the result set to parse
 	 * @return the result set as a list
 	 */
-	public abstract List<T> parseData(ResultSet rs) throws ClassNotFoundException, SQLException;
+	protected abstract List<T> parseData(ResultSet rs) throws ClassNotFoundException, SQLException;
 
 	/**
 	 * Adds the given object to its respective table
@@ -109,5 +112,14 @@ public abstract class AbstractDAO<T> {
 	 * @param obj
 	 */
 	public abstract void delete(T obj) throws ClassNotFoundException, SQLException;
+
+	/**
+	 * Returns all rows in the table
+	 * 
+	 * @return the entire table
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
+	public abstract List<T> getAll() throws ClassNotFoundException, SQLException;
 
 }

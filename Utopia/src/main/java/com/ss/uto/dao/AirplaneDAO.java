@@ -49,4 +49,9 @@ public class AirplaneDAO extends AbstractDAO<Airplane> {
 		return planes;
 	}
 
+	@Override
+	public List<Airplane> getAll() throws ClassNotFoundException, SQLException {
+		return super.getData("select * from airplane");
+	}
+
 }

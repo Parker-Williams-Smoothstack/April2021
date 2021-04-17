@@ -38,4 +38,10 @@ public class PassengerDAO extends AbstractDAO<Passenger> {
 		
 	}
 
+	@Override
+	public List<Passenger> getAll() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -45,4 +45,10 @@ public class BookingPaymentDAO extends AbstractDAO<BookingPayment> {
 		
 	}
 
+	@Override
+	public List<BookingPayment> getAll() throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

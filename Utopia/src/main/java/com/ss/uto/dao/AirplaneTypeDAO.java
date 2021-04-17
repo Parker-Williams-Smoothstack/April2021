@@ -6,44 +6,54 @@ package com.ss.uto.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.uto.de.Airplane;
+import com.ss.uto.de.AirplaneType;
 
 /**
  * @author Parker W.
  *
  */
-public class AirplaneTypeDAO extends AbstractDAO<Airplane> {
+public class AirplaneTypeDAO extends AbstractDAO<AirplaneType> {
 
 	public AirplaneTypeDAO(Connection conn) {
 		super(conn);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public List<Airplane> parseData(ResultSet rs) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public List<AirplaneType> parseData(ResultSet rs) throws ClassNotFoundException, SQLException {
+		List<AirplaneType> types = new ArrayList<>();
+		while (rs.next()) {
+			AirplaneType type = new AirplaneType();
+			type.setType(rs.getInt("id"));
+			type.setCapacity(rs.getInt("max_capacity"));
+			types.add(type);
+		}
+		return types;
 	}
 
 	@Override
-	public Integer add(Airplane obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer add(AirplaneType obj) throws ClassNotFoundException, SQLException {
+		return super.addPK("INSERT INTO airplane_type (id, max_capacity) VALUES (?,?)", obj.getType(),
+				obj.getCapacity());
 	}
 
 	@Override
-	public void update(Airplane obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+	public void update(AirplaneType obj) throws ClassNotFoundException, SQLException {
+		super.update("UPDATE airplane_type set max_capacity = ? where id = ?", obj.getCapacity(), obj.getType());
+
 	}
 
 	@Override
-	public void delete(Airplane obj) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		
+	public void delete(AirplaneType obj) throws ClassNotFoundException, SQLException {
+		super.update("DELETE FROM airplane_type where id = ?", obj.getType());
+
 	}
 
+	@Override
+	public List<AirplaneType> getAll() throws ClassNotFoundException, SQLException {
+		return super.getData("SELECT * FROM airplane_type");
+	}
 
 }
