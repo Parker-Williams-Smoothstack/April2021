@@ -71,4 +71,11 @@ public class Airplane {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Airplane [" + (id != null ? "id=" + id + ", " : "") + (type != null ? "type=" + type : "") + "]";
+	}
+	
+	
+
 }

@@ -71,4 +71,12 @@ public class Airport {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Airport [" + (code != null ? "code=" + code + ", " : "")
+				+ (cityName != null ? "cityName=" + cityName : "") + "]";
+	}
+	
+	
+
 }

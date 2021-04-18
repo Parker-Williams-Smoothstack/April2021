@@ -157,4 +157,15 @@ public class Flight {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Flight [" + (id != null ? "id=" + id + ", " : "") + (route != null ? "route=" + route + ", " : "")
+				+ (plane != null ? "plane=" + plane + ", " : "")
+				+ (depatureTime != null ? "depatureTime=" + depatureTime + ", " : "")
+				+ (reservedSeats != null ? "reservedSeats=" + reservedSeats + ", " : "")
+				+ (seatPrice != null ? "seatPrice=" + seatPrice : "") + "]";
+	}
+	
+	
+
 }

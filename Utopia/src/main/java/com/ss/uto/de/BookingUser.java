@@ -10,7 +10,7 @@ package com.ss.uto.de;
 public class BookingUser {
 
 	private Booking booking = new Booking();
-	private Integer id;
+	private User userId;
 
 	/**
 	 * @return the booking
@@ -27,17 +27,17 @@ public class BookingUser {
 	}
 
 	/**
-	 * @return the id
+	 * @return the userId
 	 */
-	public Integer getId() {
-		return id;
+	public User getUserId() {
+		return userId;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param userId the userId to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class BookingUser {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((booking == null) ? 0 : booking.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -63,12 +63,18 @@ public class BookingUser {
 				return false;
 		} else if (!booking.equals(other.booking))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (userId == null) {
+			if (other.userId != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!userId.equals(other.userId))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "BookingUser [" + (booking != null ? "booking=" + booking + ", " : "")
+				+ (userId != null ? "userId=" + userId : "") + "]";
 	}
 
 }

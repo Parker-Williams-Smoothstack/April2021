@@ -38,8 +38,10 @@ public class FlightDAO extends AbstractDAO<Flight> {
 
 	@Override
 	public Integer add(Flight obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("insert flight (id, route_id, airplane_id, departure_time, reserved_seats, seat_price) values (?,?,?,?,?,?)", 
-				obj.getId(), obj.getRoute().getId(), obj.getPlane().getId(), obj.getDepatureTime(), obj.getReservedSeats(), obj.getSeatPrice());
+		Integer key = super.addPK("insert flight (route_id, airplane_id, departure_time, reserved_seats, seat_price) values (?,?,?,?,?)", 
+				obj.getRoute().getId(), obj.getPlane().getId(), obj.getDepatureTime(), obj.getReservedSeats(), obj.getSeatPrice());
+		obj.setId(key);
+		return key;
 	}
 
 	@Override

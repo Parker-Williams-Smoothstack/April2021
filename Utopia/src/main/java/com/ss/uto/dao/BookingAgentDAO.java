@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.uto.de.Booking;
 import com.ss.uto.de.BookingAgent;
 
 public class BookingAgentDAO extends AbstractDAO<BookingAgent>{
@@ -20,8 +19,12 @@ public class BookingAgentDAO extends AbstractDAO<BookingAgent>{
 		List<BookingAgent> list = new ArrayList<>();
 		while (rs.next()) {
 			BookingAgent obj = new BookingAgent();
-			obj.setBooking((Booking) rs.getObject("booking_id"));	//do we need to use the BookingDAO here?
-			obj.setId(rs.getInt("agent_id"));
+			BookingDAO bdao = new BookingDAO(conn);
+			UserDAO udao = new UserDAO(conn);
+			
+			obj.setAgentId(udao.getData("select * from user where id = ?", rs.getInt("agent_id")).get(0));
+			obj.setBooking(bdao.getData("select * from booking where id = ?", rs.getInt("booking_id")).get(0));
+			
 			list.add(obj);
 		}
 		return list;
@@ -29,18 +32,18 @@ public class BookingAgentDAO extends AbstractDAO<BookingAgent>{
 
 	@Override
 	public Integer add(BookingAgent obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("INSERT INTO booking_agent (booking_id, agent_id) VALUES (?,?)", obj.getBooking().getId(), obj.getId());
+		return super.addPK("INSERT INTO booking_agent (booking_id, agent_id) VALUES (?,?)", obj.getBooking().getId(), obj.getAgentId().getId());
 	}
 
 	@Override
 	public void update(BookingAgent obj) throws ClassNotFoundException, SQLException {
-		super.update("UPDATE booking_agent booking_id = ? where agent_id = ?", obj.getBooking().getId(), obj.getId());
+		super.update("UPDATE booking_agent booking_id = ? where agent_id = ?", obj.getBooking().getId(), obj.getAgentId().getId());
 		
 	}
 
 	@Override
 	public void delete(BookingAgent obj) throws ClassNotFoundException, SQLException {
-		super.update("delete from booking_agent where agent_id = ?", obj.getId());
+		super.update("delete from booking_agent where agent_id = ?", obj.getAgentId().getId());
 		
 	}
 

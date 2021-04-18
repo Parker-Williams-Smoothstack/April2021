@@ -92,4 +92,12 @@ public class Route {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Route [" + (id != null ? "id=" + id + ", " : "") + (origin != null ? "origin=" + origin + ", " : "")
+				+ (destination != null ? "destination=" + destination : "") + "]";
+	}
+	
+	
+
 }

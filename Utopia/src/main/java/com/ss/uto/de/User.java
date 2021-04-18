@@ -198,4 +198,14 @@ public class User {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "User [" + (id != null ? "id=" + id + ", " : "") + (role != null ? "role=" + role + ", " : "")
+				+ (familyName != null ? "familyName=" + familyName + ", " : "")
+				+ (givenName != null ? "givenName=" + givenName + ", " : "")
+				+ (username != null ? "username=" + username + ", " : "")
+				+ (password != null ? "password=" + password + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "") + (phone != null ? "phone=" + phone : "") + "]";
+	}
+
 }

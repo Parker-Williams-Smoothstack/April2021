@@ -29,7 +29,9 @@ public class BookingDAO extends AbstractDAO<Booking> {
 
 	@Override
 	public Integer add(Booking obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("INSERT INTO booking (id, is_active, confirmation_code) VALUES (?,?,?)", obj.getId(), obj.isActive(), obj.getConfirmationCode());
+		Integer key = super.addPK("INSERT INTO booking (is_active, confirmation_code) VALUES (?,?)", obj.isActive(), obj.getConfirmationCode());
+		obj.setId(key);
+		return key;
 	}
 
 	@Override

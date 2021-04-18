@@ -38,10 +38,12 @@ public class UserDAO extends AbstractDAO<User> {
 
 	@Override
 	public Integer add(User obj) throws ClassNotFoundException, SQLException {
-		return super.addPK(
-				"INSERT INTO user (id, role_id, given_name, family_name, username, email, password, phone) VALUES (?,?,?,?,?,?,?,?)",
-				obj.getId(), obj.getRole().getId(), obj.getGivenName(), obj.getFamilyName(), obj.getUsername(),
+		Integer key = super.addPK(
+				"INSERT INTO user (role_id, given_name, family_name, username, email, password, phone) VALUES (?,?,?,?,?,?,?)",
+				obj.getRole().getId(), obj.getGivenName(), obj.getFamilyName(), obj.getUsername(),
 				obj.getEmail(), obj.getPassword(), obj.getPhone());
+		obj.setId(key);
+		return key;
 	}
 
 	@Override

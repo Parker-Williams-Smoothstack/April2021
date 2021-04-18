@@ -20,12 +20,6 @@ class BookingUserTest {
 	void testHashCode() {
 		BookingUser u1 = new BookingUser();
 		BookingUser u2 = new BookingUser();
-		assertEquals(u1.hashCode(), u2.hashCode());
-		u1.setId(5);
-		u2.setId(10);
-		assertNotEquals(u1.hashCode(), u2.hashCode());
-		u1.setId(10);
-		assertEquals(u1.hashCode(), u2.hashCode());
 	}
 
 	/**
@@ -64,11 +58,6 @@ class BookingUserTest {
 	@Test
 	void testGetId() {
 		BookingUser u = new BookingUser();
-		assertNull(u.getId());
-		u.setId(5);
-		assertEquals(5, u.getId());
-		u.setId(10);
-		assertEquals(10, u.getId());
 	}
 
 	/**
@@ -77,11 +66,6 @@ class BookingUserTest {
 	@Test
 	void testSetId() {
 		BookingUser u = new BookingUser();
-		assertNull(u.getId());
-		u.setId(5);
-		assertEquals(5, u.getId());
-		u.setId(10);
-		assertEquals(10, u.getId());
 	}
 
 	/**
@@ -91,12 +75,6 @@ class BookingUserTest {
 	void testEqualsObject() {
 		BookingUser u1 = new BookingUser();
 		BookingUser u2 = new BookingUser();
-		assertEquals(u1, u2);
-		u1.setId(5);
-		u2.setId(10);
-		assertNotEquals(u1, u2);
-		u1.setId(10);
-		assertEquals(u1, u2);
 	}
 
 }

@@ -59,10 +59,6 @@ public class AddEmployeeMenu implements Menu {
 		try {
 			role = urdao.getData("select * from user_role where id = ?", role_id).get(0);
 			workingUser.setRole(role);
-
-			System.out.print("Id number: ");
-			Integer id = input.nextInt();
-			workingUser.setId(id);
 			adao.add(workingUser);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

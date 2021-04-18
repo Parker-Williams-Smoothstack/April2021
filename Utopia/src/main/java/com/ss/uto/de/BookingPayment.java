@@ -89,4 +89,10 @@ public class BookingPayment {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "BookingPayment [" + (booking != null ? "booking=" + booking + ", " : "")
+				+ (stripeId != null ? "stripeId=" + stripeId + ", " : "") + "refunded=" + refunded + "]";
+	}
+
 }

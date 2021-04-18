@@ -39,8 +39,10 @@ public class RouteDAO extends AbstractDAO<Route> {
 
 	@Override
 	public Integer add(Route obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("insert into route (id, origin_id, destination_id) VALUES (?,?,?)", obj.getId(),
+		Integer key = super.addPK("insert into route (origin_id, destination_id) VALUES (?,?)",
 				obj.getOrigin().getCode(), obj.getDestination().getCode());
+		obj.setId(key);
+		return key;
 	}
 
 	@Override

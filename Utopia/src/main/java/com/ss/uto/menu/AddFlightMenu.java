@@ -29,10 +29,6 @@ public class AddFlightMenu implements Menu {
 		Airport destPort = null;
 		Route route = null;
 
-		// flight id
-		System.out.print("Please enter the ID of the flight: ");
-		flight.setId(input.nextInt());
-
 		Airport originPort = airportMenu.getItem(conn); // get the origin airport
 
 		// Get the destination airport or create a new one first

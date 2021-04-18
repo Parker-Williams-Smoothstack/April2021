@@ -9,18 +9,27 @@ import com.ss.uto.menu.AddAirportMenu;
 import com.ss.uto.menu.AddEmployeeMenu;
 import com.ss.uto.menu.AddFlightMenu;
 import com.ss.uto.menu.AddSeatsMenu;
+import com.ss.uto.menu.AddTicketsAndPassengersMenu;
+import com.ss.uto.menu.AddTravelersMenu;
 import com.ss.uto.menu.DeleteAirportMenu;
 import com.ss.uto.menu.DeleteEmployeeMenu;
 import com.ss.uto.menu.DeleteFlightMenu;
 import com.ss.uto.menu.DeleteSeatsMenu;
+import com.ss.uto.menu.DeleteTicketsAndPassengersMenu;
+import com.ss.uto.menu.DeleteTravelerMenu;
+import com.ss.uto.menu.OverrideCancellationMenu;
 import com.ss.uto.menu.ReadAirportsMenu;
 import com.ss.uto.menu.ReadEmployeesMenu;
 import com.ss.uto.menu.ReadFlightsMenu;
 import com.ss.uto.menu.ReadSeatsMenu;
+import com.ss.uto.menu.ReadTicketsAndPassengersMenu;
+import com.ss.uto.menu.ReadTravelersMenu;
 import com.ss.uto.menu.UpdateAirportMenu;
 import com.ss.uto.menu.UpdateEmployeeMenu;
 import com.ss.uto.menu.UpdateFlightMenu;
 import com.ss.uto.menu.UpdateSeatsMenu;
+import com.ss.uto.menu.UpdateTicketsAndPassengersMenu;
+import com.ss.uto.menu.UpdateTravelerMenu;
 import com.ss.uto.utils.ConnectionUtility;
 
 /**
@@ -103,14 +112,13 @@ public class AdministratorService {
 	}
 
 	public void addSeat() throws SQLException {
-		// TODO
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
 		// for a seat_table, but the given database lacks
 		// this seat_table and only has capacity in the airplane type and reserved seats
 		// in the flight.
-		
+
 		// suppose that the seats table is replaced by the difference between
 		// airplane_type.max_capacity and flight.reserved_seats with no difference in
 		// classes on account of the single flight.seat_price
@@ -129,14 +137,13 @@ public class AdministratorService {
 	}
 
 	public void updateSeat() throws SQLException {
-		// TODO
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
 		// for a seat_table, but the given database lacks
 		// this seat_table and only has capacity in the airplane type and reserved seats
 		// in the flight.
-		
+
 		// suppose that the seats table is replaced by the difference between
 		// airplane_type.max_capacity and flight.reserved_seats with no difference in
 		// classes on account of the single flight.seat_price
@@ -152,18 +159,17 @@ public class AdministratorService {
 		} finally {
 			conn.close();
 		}
-		
+
 	}
 
 	public void deleteSeat() throws SQLException {
-		// TODO
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
 		// for a seat_table, but the given database lacks
 		// this seat_table and only has capacity in the airplane type and reserved seats
 		// in the flight.
-		
+
 		// suppose that the seats table is replaced by the difference between
 		// airplane_type.max_capacity and flight.reserved_seats with no difference in
 		// classes on account of the single flight.seat_price
@@ -182,7 +188,6 @@ public class AdministratorService {
 	}
 
 	public void readSeat() throws SQLException {
-		// TODO
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
@@ -207,8 +212,7 @@ public class AdministratorService {
 		}
 	}
 
-	public void addTicketsPassengers() {
-		// TODO
+	public void addTicketsPassengers() throws SQLException {
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
@@ -217,11 +221,23 @@ public class AdministratorService {
 		// in the flight. Also requests submitting tickets to a currently non-existing
 		// Ticket table
 
-		// Suppose that the booking table takes the place of the ticket table
+		// Suppose that the booking table takes the place of the ticket table and use
+		// the passenger table
+		try {
+			conn = conUtil.getConnection();
+
+			AddTicketsAndPassengersMenu menu = new AddTicketsAndPassengersMenu();
+			menu.operate(conn);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void updateTicketsPassengers() {
-		// TODO
+	public void updateTicketsPassengers() throws SQLException {
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
@@ -231,10 +247,21 @@ public class AdministratorService {
 		// Ticket table
 
 		// Suppose that the booking table takes the place of the ticket table
+		try {
+			conn = conUtil.getConnection();
+
+			UpdateTicketsAndPassengersMenu menu = new UpdateTicketsAndPassengersMenu();
+			menu.operate(conn);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void deleteTicketsPassengers() {
-		// TODO
+	public void deleteTicketsPassengers() throws SQLException {
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
@@ -243,11 +270,23 @@ public class AdministratorService {
 		// in the flight. Also requests submitting tickets to a currently non-existing
 		// Ticket table
 
-		// Suppose that the booking table takes the place of the ticket table
+		// Suppose that the booking table takes the place of the ticket table and use
+		// the passenger table
+		try {
+			conn = conUtil.getConnection();
+
+			DeleteTicketsAndPassengersMenu menu = new DeleteTicketsAndPassengersMenu();
+			menu.operate(conn);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void readTicketsPassengers() {
-		// TODO
+	public void readTicketsPassengers() throws SQLException {
 		// Specifications of the given database do not lend themselves to meeting the
 		// specifications of the assignment in this regard.
 		// Assignment asks for first, business, and economy seating as unique types and
@@ -256,7 +295,20 @@ public class AdministratorService {
 		// in the flight. Also requests submitting tickets to a currently non-existing
 		// Ticket table
 
-		// Suppose that the booking table takes the place of the ticket table
+		// Suppose that the booking table takes the place of the ticket table and use
+		// the passenger table
+		try {
+			conn = conUtil.getConnection();
+
+			ReadTicketsAndPassengersMenu menu = new ReadTicketsAndPassengersMenu();
+			menu.operate(conn);
+
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
 	public void addAirport() throws SQLException {
@@ -319,20 +371,67 @@ public class AdministratorService {
 		}
 	}
 
-	public void addTraveler() {
-		// TODO
+	public void addTraveler() throws SQLException {
+		try {
+			conn = conUtil.getConnection();
+			AddTravelersMenu menu = new AddTravelersMenu();
+			menu.operate(conn);
+			conn.commit();
+		} catch (Exception e) {
+			System.err.println("Error adding the passenger to the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
+
 	}
 
-	public void updateTraveler() {
-		// TODO
+	public void updateTraveler() throws SQLException {
+		try {
+			conn = conUtil.getConnection();
+			UpdateTravelerMenu menu = new UpdateTravelerMenu();
+			menu.operate(conn);
+			conn.commit();
+		} catch (Exception e) {
+			System.err.println("Error updating the passenger in the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void deleteTraveler() {
-		// TODO
+	public void deleteTraveler() throws SQLException {
+		// assumed to actually be the passenger table
+		try {
+			conn = conUtil.getConnection();
+			DeleteTravelerMenu menu = new DeleteTravelerMenu();
+			menu.operate(conn);
+			conn.commit();
+		} catch (Exception e) {
+			System.err.println("Error deleting the passenger from the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void readTraveler() {
-		// TODO
+	public void readTraveler() throws SQLException {
+		// assumed to actually be the passenger table
+		try {
+			conn = conUtil.getConnection();
+			ReadTravelersMenu menu = new ReadTravelersMenu();
+			menu.operate(conn);
+			conn.commit();
+		} catch (Exception e) {
+			System.err.println("Error reading the passenger from the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
 	public void addEmployee() throws SQLException {
@@ -395,8 +494,20 @@ public class AdministratorService {
 		}
 	}
 
-	public void overrideTripCancellation() {
-		// TODO
+	public void overrideTripCancellation() throws SQLException{
+		// Cancellation appears to simply delete a booking, so in order to override it a user's deletion should really just set it to inactive
+		try {
+			conn = conUtil.getConnection();
+			OverrideCancellationMenu menu = new OverrideCancellationMenu();
+			menu.operate(conn);
+			conn.commit();
+		} catch (Exception e) {
+			System.err.println("Error reading the employee from the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
 }

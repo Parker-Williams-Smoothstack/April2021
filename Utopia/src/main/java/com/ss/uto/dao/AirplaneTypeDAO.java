@@ -35,8 +35,11 @@ public class AirplaneTypeDAO extends AbstractDAO<AirplaneType> {
 
 	@Override
 	public Integer add(AirplaneType obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("INSERT INTO airplane_type (id, max_capacity) VALUES (?,?)", obj.getType(),
+		Integer key = super.addPK("INSERT INTO airplane_type (max_capacity) VALUES (?)",
 				obj.getCapacity());
+		
+		obj.setType(key);
+		return key;
 	}
 
 	@Override

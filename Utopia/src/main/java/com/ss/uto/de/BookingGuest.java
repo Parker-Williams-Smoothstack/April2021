@@ -92,4 +92,12 @@ public class BookingGuest {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "BookingGuest [" + (booking != null ? "booking=" + booking + ", " : "")
+				+ (email != null ? "email=" + email + ", " : "") + (phone != null ? "phone=" + phone : "") + "]";
+	}
+	
+	
+
 }

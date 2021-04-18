@@ -21,9 +21,7 @@ class BookingAgentTest {
 		BookingAgent a1 = new BookingAgent();
 		BookingAgent a2 = new BookingAgent();
 		assertEquals(a1.hashCode(), a2.hashCode());
-		a1.setId(5);
 		assertNotEquals(a1.hashCode(), a2.hashCode());
-		a2.setId(5);
 		assertEquals(a1.hashCode(), a2.hashCode());
 	}
 
@@ -60,31 +58,6 @@ class BookingAgentTest {
 		assertNotEquals(b1, a.getBooking());
 	}
 
-	/**
-	 * Test method for {@link com.ss.uto.de.BookingAgent#getId()}.
-	 */
-	@Test
-	void testGetId() {
-		BookingAgent a = new BookingAgent();
-		assertNull(a.getId());
-		a.setId(5);
-		assertEquals(5, a.getId());
-		a.setId(10);
-		assertEquals(10, a.getId());
-	}
-
-	/**
-	 * Test method for {@link com.ss.uto.de.BookingAgent#setId(java.lang.Integer)}.
-	 */
-	@Test
-	void testSetId() {
-		BookingAgent a = new BookingAgent();
-		assertNull(a.getId());
-		a.setId(5);
-		assertEquals(5, a.getId());
-		a.setId(10);
-		assertEquals(10, a.getId());
-	}
 
 	/**
 	 * Test method for {@link com.ss.uto.de.BookingAgent#equals(java.lang.Object)}.
@@ -93,10 +66,6 @@ class BookingAgentTest {
 	void testEqualsObject() {
 		BookingAgent a1 = new BookingAgent();
 		BookingAgent a2 = new BookingAgent();
-		assertEquals(a1, a2);
-		a1.setId(5);
-		assertNotEquals(a1, a2);
-		a2.setId(5);
 		assertEquals(a1, a2);
 	}
 

@@ -56,7 +56,6 @@ class BookingAgentDAOTest {
 	void testAddBookingAgent() {
 		BookingAgent ba = new BookingAgent();
 		ba.setBooking(booking);
-		ba.setId(1);
 		try {
 			bookDAO.add(booking);
 
@@ -76,79 +75,76 @@ class BookingAgentDAOTest {
 	 * Test method for
 	 * {@link com.ss.uto.dao.BookingAgentDAO#update(com.ss.uto.de.BookingAgent)}.
 	 */
-//	@Test
-//	void testUpdateBookingAgent() {
-//		BookingAgent ba = new BookingAgent();
-//		ba.setBooking(booking);
-//		ba.setId(1);
-//		try {
-//			bookDAO.add(booking);
-//			booking.setId(2);
-//			bookDAO.add(booking);
-//
-//			bdao.add(ba);
-//			assertEquals(1, bdao.getAll().get(0).getBooking().getId());
-//			ba.setBooking(booking);
-//			bdao.update(ba);
-//			assertEquals(2, bdao.getAll().get(0).getBooking().getId());
-//
-//			bdao.delete(ba);
-//			bookDAO.delete(booking);
-//			booking.setId(1);
-//			bookDAO.delete(booking);
-//		} catch (ClassNotFoundException | SQLException e) {
-//			fail();
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	void testUpdateBookingAgent() {
+		BookingAgent ba = new BookingAgent();
+		ba.setBooking(booking);
+		try {
+			bookDAO.add(booking);
+			booking.setId(2);
+			bookDAO.add(booking);
+
+			bdao.add(ba);
+			assertEquals(1, bdao.getAll().get(0).getBooking().getId());
+			ba.setBooking(booking);
+			bdao.update(ba);
+			assertEquals(2, bdao.getAll().get(0).getBooking().getId());
+
+			bdao.delete(ba);
+			bookDAO.delete(booking);
+			booking.setId(1);
+			bookDAO.delete(booking);
+		} catch (ClassNotFoundException | SQLException e) {
+			fail();
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Test method for
 	 * {@link com.ss.uto.dao.BookingAgentDAO#delete(com.ss.uto.de.BookingAgent)}.
 	 */
-//	@Test
-//	void testDeleteBookingAgent() {
-//		BookingAgent ba = new BookingAgent();
-//		ba.setBooking(booking);
-//		ba.setId(1);
-//		try {
-//			bookDAO.add(booking);
-//
-//			assertEquals(0, bdao.getAll().size());
-//			bdao.add(ba);
-//			assertEquals(1, bdao.getAll().size());
-//
-//			bdao.delete(ba);
-//			bookDAO.delete(booking);
-//			assertEquals(0, bdao.getAll().size());
-//		} catch (ClassNotFoundException | SQLException e) {
-//			e.printStackTrace();
-//			fail();
-//		}
-//	}
+	@Test
+	void testDeleteBookingAgent() {
+		BookingAgent ba = new BookingAgent();
+		ba.setBooking(booking);
+		try {
+			bookDAO.add(booking);
+
+			assertEquals(0, bdao.getAll().size());
+			bdao.add(ba);
+			assertEquals(1, bdao.getAll().size());
+
+			bdao.delete(ba);
+			bookDAO.delete(booking);
+			assertEquals(0, bdao.getAll().size());
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 
 	/**
 	 * Test method for {@link com.ss.uto.dao.BookingAgentDAO#getAll()}.
 	 */
-//	@Test
-//	void testGetAll() {
-//		BookingAgent ba = new BookingAgent();
-//		ba.setBooking(booking);
-//		ba.setId(1);
-//		try {
-//			bookDAO.add(booking);
-//
-//			assertEquals(0, bdao.getAll().size());
-//			bdao.add(ba);
-//			assertEquals(1, bdao.getAll().size());
-//
-//			bdao.delete(ba);
-//			bookDAO.delete(booking);
-//			assertEquals(0, bdao.getAll().size());
-//		} catch (ClassNotFoundException | SQLException e) {
-//			fail();
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	void testGetAll() {
+		BookingAgent ba = new BookingAgent();
+		ba.setBooking(booking);
+		try {
+			bookDAO.add(booking);
+
+			assertEquals(0, bdao.getAll().size());
+			bdao.add(ba);
+			assertEquals(1, bdao.getAll().size());
+
+			bdao.delete(ba);
+			bookDAO.delete(booking);
+			assertEquals(0, bdao.getAll().size());
+		} catch (ClassNotFoundException | SQLException e) {
+			fail();
+			e.printStackTrace();
+		}
+	}
 
 }

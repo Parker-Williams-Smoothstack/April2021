@@ -89,4 +89,10 @@ public class Booking {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Booking [" + (id != null ? "id=" + id + ", " : "") + "isActive=" + isActive + ", "
+				+ (confirmationCode != null ? "confirmationCode=" + confirmationCode : "") + "]";
+	}
+
 }

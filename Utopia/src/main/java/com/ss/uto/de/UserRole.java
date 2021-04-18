@@ -71,4 +71,9 @@ public class UserRole {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "UserRole [" + (id != null ? "id=" + id + ", " : "") + (name != null ? "name=" + name : "") + "]";
+	}
+
 }

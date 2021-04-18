@@ -71,4 +71,12 @@ public class FlightBooking {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "FlightBooking [" + (flight != null ? "flight=" + flight + ", " : "")
+				+ (booking != null ? "booking=" + booking : "") + "]";
+	}
+	
+	
+
 }

@@ -179,4 +179,17 @@ public class Passenger {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Passenger [" + (id != null ? "id=" + id + ", " : "")
+				+ (booking != null ? "booking=" + booking + ", " : "")
+				+ (givenName != null ? "givenName=" + givenName + ", " : "")
+				+ (familyName != null ? "familyName=" + familyName + ", " : "")
+				+ (dateOfBirth != null ? "dateOfBirth=" + dateOfBirth + ", " : "")
+				+ (gender != null ? "gender=" + gender + ", " : "") + (address != null ? "address=" + address : "")
+				+ "]";
+	}
+	
+	
+
 }

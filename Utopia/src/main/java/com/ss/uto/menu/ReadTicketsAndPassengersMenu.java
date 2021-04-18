@@ -3,6 +3,12 @@
  */
 package com.ss.uto.menu;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.ss.uto.de.Booking;
+
 /**
  * @author Parker W.
  *
@@ -10,9 +16,21 @@ package com.ss.uto.menu;
 public class ReadTicketsAndPassengersMenu implements Menu {
 
 	@Override
-	public void operate() {
-		// TODO Auto-generated method stub
-
+	public void operate(Connection conn) throws SQLException {
+		GetBookingMenu display = new GetBookingMenu();
+		Booking booking;
+		Scanner pause = new Scanner(System.in);
+		do {
+			booking = display.getItem(conn);
+			System.out.println(booking.toString());
+			System.out.println("Press enter to continue...");
+			pause.nextLine();
+		} while(booking != null);
+		
+		pause.close();
+		
 	}
+
+
 
 }

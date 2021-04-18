@@ -71,4 +71,12 @@ public class AirplaneType {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "AirplaneType [" + (type != null ? "type=" + type + ", " : "")
+				+ (capacity != null ? "capacity=" + capacity : "") + "]";
+	}
+	
+	
+
 }

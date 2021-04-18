@@ -28,7 +28,9 @@ public class UserRoleDAO extends AbstractDAO<UserRole> {
 
 	@Override
 	public Integer add(UserRole obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("INSERT INTO user_role (id, name) VALUES (?,?)", obj.getId(), obj.getName());
+		Integer key = super.addPK("INSERT INTO user_role (name) VALUES (?)", obj.getName());
+		obj.setId(key);
+		return key;
 	}
 
 	@Override
