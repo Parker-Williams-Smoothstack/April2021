@@ -3,6 +3,12 @@
  */
 package com.ss.uto.menu;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+import com.ss.uto.de.Flight;
+
 /**
  * @author Parker W.
  *
@@ -10,8 +16,17 @@ package com.ss.uto.menu;
 public class ReadFlightsMenu implements Menu {
 
 	@Override
-	public void operate() {
-		// TODO Auto-generated method stub
+	public void operate(Connection conn) throws SQLException {
+		GetFlightMenu menu = new GetFlightMenu();
+		Flight flight;
+		Scanner pause = new Scanner(System.in);
+		do {
+			flight = menu.getItem(conn);
+			System.out.println(flight);
+			System.out.println("Please press enter to continue...");
+			pause.nextLine();
+		} while (flight != null);
+		pause.close();
 
 	}
 

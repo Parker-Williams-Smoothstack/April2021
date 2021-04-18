@@ -55,7 +55,7 @@ public class AddAirportMenu implements Menu {
 		AirportDAO adao = new AirportDAO(conn);
 		try {
 			adao.add(port);
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

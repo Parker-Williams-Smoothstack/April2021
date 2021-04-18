@@ -1,11 +1,16 @@
 package com.ss.uto.menu;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class AddSeatsMenu implements Menu {
 
-	@Override
-	public void operate() {
-		// TODO Auto-generated method stub
 
+	@Override
+	public void operate(Connection conn) throws SQLException {
+		//Is really the update seats menu
+		new UpdateSeatsMenu().operate(conn);
+		
 	}
 
 }
