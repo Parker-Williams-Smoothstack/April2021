@@ -9,21 +9,21 @@ package com.ss.uto.de;
  */
 public class Route {
 
-	private String id;
+	private Integer id;
 	private Airport origin = new Airport();
 	private Airport destination = new Airport();
 
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

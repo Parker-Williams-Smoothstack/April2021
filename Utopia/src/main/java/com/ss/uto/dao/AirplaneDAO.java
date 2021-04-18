@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ss.uto.de.Airplane;
+import com.ss.uto.de.AirplaneType;
 
 /**
  * @author Parker W.
@@ -43,7 +44,11 @@ public class AirplaneDAO extends AbstractDAO<Airplane> {
 		while(rs.next()) {
 			Airplane plane = new Airplane();
 			plane.setId(rs.getInt("id"));
-			plane.getType().setType(rs.getInt("type_id"));
+			
+			AirplaneTypeDAO tdao = new AirplaneTypeDAO(this.conn);
+			AirplaneType t = tdao.getData("select * from airplane_type where id = ?", rs.getInt("type_id")).get(0);
+			
+			plane.setType(t);			
 			planes.add(plane);
 		}
 		return planes;

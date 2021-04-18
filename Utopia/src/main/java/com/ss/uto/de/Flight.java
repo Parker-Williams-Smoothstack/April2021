@@ -13,6 +13,7 @@ public class Flight {
 
 	private Integer id;
 	private Route route = new Route();
+	private Airplane plane = new Airplane();
 	private Date depatureTime;
 	private Integer reservedSeats;
 	private Float seatPrice;
@@ -87,12 +88,27 @@ public class Flight {
 		this.seatPrice = seatPrice;
 	}
 
+	/**
+	 * @return the plane
+	 */
+	public Airplane getPlane() {
+		return plane;
+	}
+
+	/**
+	 * @param plane the plane to set
+	 */
+	public void setPlane(Airplane plane) {
+		this.plane = plane;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((depatureTime == null) ? 0 : depatureTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((plane == null) ? 0 : plane.hashCode());
 		result = prime * result + ((reservedSeats == null) ? 0 : reservedSeats.hashCode());
 		result = prime * result + ((route == null) ? 0 : route.hashCode());
 		result = prime * result + ((seatPrice == null) ? 0 : seatPrice.hashCode());
@@ -117,6 +133,11 @@ public class Flight {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (plane == null) {
+			if (other.plane != null)
+				return false;
+		} else if (!plane.equals(other.plane))
 			return false;
 		if (reservedSeats == null) {
 			if (other.reservedSeats != null)
