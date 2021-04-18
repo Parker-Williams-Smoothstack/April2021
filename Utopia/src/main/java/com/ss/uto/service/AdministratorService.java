@@ -6,9 +6,13 @@ package com.ss.uto.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import com.ss.uto.menu.AddAirportMenu;
+import com.ss.uto.menu.AddEmployeeMenu;
 import com.ss.uto.menu.DeleteAirportMenu;
+import com.ss.uto.menu.DeleteEmployeeMenu;
 import com.ss.uto.menu.ReadAirportsMenu;
+import com.ss.uto.menu.ReadEmployeesMenu;
 import com.ss.uto.menu.UpdateAirportMenu;
+import com.ss.uto.menu.UpdateEmployeeMenu;
 import com.ss.uto.utils.ConnectionUtility;
 
 /**
@@ -173,20 +177,64 @@ public class AdministratorService {
 		// TODO
 	}
 
-	public void addEmployee() {
-		// TODO
+	public void addEmployee() throws SQLException {
+		try {
+			conn = conUtil.getConnection();
+			AddEmployeeMenu menu = new AddEmployeeMenu();
+			menu.operate(conn);
+			conn.commit();			
+		} catch (Exception e) {
+			System.err.println("Error adding the employee to the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void updateEmployee() {
-		// TODO
+	public void updateEmployee() throws SQLException {
+		try {
+			conn = conUtil.getConnection();
+			UpdateEmployeeMenu menu = new UpdateEmployeeMenu();
+			menu.operate(conn);
+			conn.commit();			
+		} catch (Exception e) {
+			System.err.println("Error updating the employee in the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void deleteEmployee() {
-		// TODO
+	public void deleteEmployee() throws SQLException {
+		try {
+			conn = conUtil.getConnection();
+			DeleteEmployeeMenu menu = new DeleteEmployeeMenu();
+			menu.operate(conn);
+			conn.commit();			
+		} catch (Exception e) {
+			System.err.println("Error deleting the employee from the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
-	public void readEmployee() {
-		// TODO
+	public void readEmployee() throws SQLException {
+		try {
+			conn = conUtil.getConnection();
+			ReadEmployeesMenu menu = new ReadEmployeesMenu();
+			menu.operate(conn);
+			conn.commit();			
+		} catch (Exception e) {
+			System.err.println("Error reading the employee from the Utopia System.");
+			e.printStackTrace();
+			conn.rollback();
+		} finally {
+			conn.close();
+		}
 	}
 
 	public void overrideTripCancellation() {

@@ -19,6 +19,7 @@ public class ReadAirportsMenu implements Menu {
 
 	@Override
 	public void operate(Connection conn) throws SQLException {
+		// Present all the available Airports in a orderly fashion
 		try {
 			AirportDAO adao = new AirportDAO(conn);
 			List<Airport> list = adao.getAll();
@@ -40,12 +41,25 @@ public class ReadAirportsMenu implements Menu {
 					input.close();
 					return;
 				case 1:
+					updatingAirport = list.get(7 * page);
+					break;
 				case 2:
+					updatingAirport = list.get((7 * page) + 1);
+					break;
 				case 3:
+					updatingAirport = list.get((7 * page) + 2);
+					break;
 				case 4:
+					updatingAirport = list.get((7 * page) + 3);
+					break;
 				case 5:
+					updatingAirport = list.get((7 * page) + 4);
+					break;
 				case 6:
+					updatingAirport = list.get((7 * page) + 5);
+					break;
 				case 7:
+					updatingAirport = list.get((7 * page) + 6);
 					break;
 				case 8:
 					if (page > 0)
@@ -58,14 +72,18 @@ public class ReadAirportsMenu implements Menu {
 				default:
 					System.err.println("Invalid selection, please try again with a single digit number.");
 				}
+				
+				System.out.println(updatingAirport.toString());
+				System.out.println("Press enter to continue...");
+				input.nextLine(); // waits for the user to press enter
 
-			} while (updatingAirport == null);
-			input.close();
+			} while (true);
+
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
