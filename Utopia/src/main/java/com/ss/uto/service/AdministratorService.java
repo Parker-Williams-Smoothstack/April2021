@@ -5,6 +5,8 @@ package com.ss.uto.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Scanner;
+
 import com.ss.uto.menu.AddAirportMenu;
 import com.ss.uto.menu.AddEmployeeMenu;
 import com.ss.uto.menu.AddFlightMenu;
@@ -47,6 +49,244 @@ public class AdministratorService {
 
 	public AdministratorService() {
 		conUtil = new ConnectionUtility();
+	}
+
+	public void mainAdminMenu() throws SQLException {
+
+		System.out.println("1) Manage flights");
+		System.out.println("2) Manage seats");
+		System.out.println("3) Manage tickets");
+		System.out.println("4) Manage airports");
+		System.out.println("5) Manage travelers");
+		System.out.println("6) Manage employees");
+		System.out.println("7) Manage cancellations");
+		System.out.println("8) Quit");
+
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+		do {
+			switch (choice) {
+			case 1:
+				flightMenu();
+				break;
+			case 2:
+				seatMenu();
+				break;
+			case 3:
+				ticketMenu();
+				break;
+			case 4:
+				airportMenu();
+				break;
+			case 5:
+				travelerMenu();
+				break;
+			case 6:
+				employeeMenu();
+				break;
+			case 7:
+				overrideTripCancellation();
+				break;
+			case 8:
+			default:
+				input.close();
+				return;
+
+			}
+		} while (true);
+
+	}
+
+	public void employeeMenu() throws SQLException {
+		System.out.println("1) Read");
+		System.out.println("2) Add");
+		System.out.println("3) Update");
+		System.out.println("4) Delete");
+		System.out.println("5) Cancel");
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+
+		switch (choice) {
+		case 1:
+			readEmployee();
+			break;
+		case 2:
+			addEmployee();
+			break;
+		case 3:
+			updateEmployee();
+			break;
+		case 4:
+			deleteEmployee();
+			break;
+		case 5:
+		default:
+			input.close();
+			return;
+
+		}
+		input.close();
+
+	}
+
+	public void travelerMenu() throws SQLException {
+		System.out.println("1) Read");
+		System.out.println("2) Add");
+		System.out.println("3) Update");
+		System.out.println("4) Delete");
+		System.out.println("5) Cancel");
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+
+		switch (choice) {
+		case 1:
+			readTraveler();
+			break;
+		case 2:
+			addTraveler();
+			break;
+		case 3:
+			updateTraveler();
+			break;
+		case 4:
+			deleteTraveler();
+			break;
+		case 5:
+		default:
+			input.close();
+			return;
+
+		}
+		input.close();
+
+	}
+
+	public void airportMenu() throws SQLException {
+		System.out.println("1) Read");
+		System.out.println("2) Add");
+		System.out.println("3) Update");
+		System.out.println("4) Delete");
+		System.out.println("5) Cancel");
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+
+		switch (choice) {
+		case 1:
+			readAirport();
+			break;
+		case 2:
+			addAirport();
+			break;
+		case 3:
+			updateAirport();
+			break;
+		case 4:
+			deleteAirport();
+			break;
+		case 5:
+		default:
+			input.close();
+			return;
+
+		}
+		input.close();
+
+	}
+
+	public void ticketMenu() throws SQLException {
+		System.out.println("1) Read");
+		System.out.println("2) Add");
+		System.out.println("3) Update");
+		System.out.println("4) Delete");
+		System.out.println("5) Cancel");
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+
+		switch (choice) {
+		case 1:
+			readTicketsPassengers();
+			break;
+		case 2:
+			addTicketsPassengers();
+			break;
+		case 3:
+			updateTicketsPassengers();
+			break;
+		case 4:
+			deleteTicketsPassengers();
+			break;
+		case 5:
+		default:
+			input.close();
+			return;
+
+		}
+		input.close();
+
+	}
+
+	public void flightMenu() throws SQLException {
+		System.out.println("1) Read");
+		System.out.println("2) Add");
+		System.out.println("3) Update");
+		System.out.println("4) Delete");
+		System.out.println("5) Cancel");
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+
+		switch (choice) {
+		case 1:
+			readFlight();
+			break;
+		case 2:
+			addFlight();
+			break;
+		case 3:
+			updateFlight();
+			break;
+		case 4:
+			deleteFlight();
+			break;
+		case 5:
+		default:
+			input.close();
+			return;
+
+		}
+		input.close();
+
+	}
+
+	public void seatMenu() throws SQLException {
+		System.out.println("1) Read");
+		System.out.println("2) Add");
+		System.out.println("3) Update");
+		System.out.println("4) Delete");
+		System.out.println("5) Cancel");
+		Scanner input = new Scanner(System.in);
+		Integer choice = input.nextInt();
+
+		switch (choice) {
+		case 1:
+			readSeat();
+			break;
+		case 2:
+			addSeat();
+			break;
+		case 3:
+			updateSeat();
+			break;
+		case 4:
+			deleteSeat();
+			break;
+		case 5:
+		default:
+			input.close();
+			return;
+
+		}
+		input.close();
+
 	}
 
 	public void addFlight() throws SQLException {
@@ -494,8 +734,9 @@ public class AdministratorService {
 		}
 	}
 
-	public void overrideTripCancellation() throws SQLException{
-		// Cancellation appears to simply delete a booking, so in order to override it a user's deletion should really just set it to inactive
+	public void overrideTripCancellation() throws SQLException {
+		// Cancellation appears to simply delete a booking, so in order to override it a
+		// user's deletion should really just set it to inactive
 		try {
 			conn = conUtil.getConnection();
 			OverrideCancellationMenu menu = new OverrideCancellationMenu();

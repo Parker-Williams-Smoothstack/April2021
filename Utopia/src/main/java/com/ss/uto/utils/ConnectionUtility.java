@@ -22,6 +22,7 @@ public class ConnectionUtility {
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
 		Class.forName(driver);
 		Connection con = DriverManager.getConnection(url, username, password);
+		con.setAutoCommit(Boolean.FALSE);
 		return con;
 	}
 
