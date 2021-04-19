@@ -63,7 +63,8 @@ public class AddEmployeeMenu implements Menu {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
+		//clear the input for the any other menues that might become confused
+		input.nextLine();
 		input.close();
 
 	}

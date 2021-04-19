@@ -29,8 +29,10 @@ public class GetEmployeeMenu implements GetMenu<User> {
 			Integer page = 0;
 			Scanner input = new Scanner(System.in);
 			do {
-				for (int i = 1; i <= 7; i++)
-					System.out.print(i + ") " + list.get((7 * page) + (i - 1)).toString() + "\n");
+				for (int i = 1; i <= 7; i++) {
+					if ((7 * page) + (i - 1) < list.size())
+						System.out.print(i + ") " + list.get((7 * page) + (i - 1)).toString() + "\n");
+				}
 				System.out.print("8) Previous Page\n");
 				System.out.print("9) Next Page\n");
 				System.out.print("0) Exit\n");
@@ -39,21 +41,36 @@ public class GetEmployeeMenu implements GetMenu<User> {
 				switch (input.nextInt()) {
 				case 0:
 					System.out.println("Exiting the User Selection Menu");
+					input.nextLine();
 					input.close();
 					return null;
 				case 1:
+					input.nextLine();
+					input.close();
 					return list.get(7 * page);
 				case 2:
+					input.nextLine();
+					input.close();
 					return list.get((7 * page) + 1);
 				case 3:
+					input.nextLine();
+					input.close();
 					return list.get((7 * page) + 2);
 				case 4:
+					input.nextLine();
+					input.close();
 					return list.get((7 * page) + 3);
 				case 5:
+					input.nextLine();
+					input.close();
 					return list.get((7 * page) + 4);
 				case 6:
+					input.nextLine();
+					input.close();
 					return list.get((7 * page) + 5);
 				case 7:
+					input.nextLine();
+					input.close();
 					return list.get((7 * page) + 6);
 				case 8:
 					if (page > 0)
@@ -75,7 +92,5 @@ public class GetEmployeeMenu implements GetMenu<User> {
 		return null;
 
 	}
-	
-	
 
 }

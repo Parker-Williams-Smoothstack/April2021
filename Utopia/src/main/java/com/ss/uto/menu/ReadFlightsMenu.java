@@ -22,10 +22,13 @@ public class ReadFlightsMenu implements Menu {
 		Scanner pause = new Scanner(System.in);
 		do {
 			flight = menu.getItem(conn);
-			System.out.println(flight);
-			System.out.println("Please press enter to continue...");
+			if(flight != null) {
+				System.out.println(flight);
+				System.out.println("Please press enter to continue...");
+			}			
 			pause.nextLine();
 		} while (flight != null);
+		pause.nextLine();
 		pause.close();
 
 	}

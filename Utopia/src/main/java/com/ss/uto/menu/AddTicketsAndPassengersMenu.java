@@ -33,7 +33,8 @@ public class AddTicketsAndPassengersMenu implements Menu {
 		} else {
 			booking.setActive(false);
 		}
-
+		//clear the input for the any other menues that might become confused
+		input.nextLine();
 		input.close();
 		try {
 			bdao.add(booking);

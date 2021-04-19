@@ -22,11 +22,14 @@ public class ReadTicketsAndPassengersMenu implements Menu {
 		Scanner pause = new Scanner(System.in);
 		do {
 			booking = display.getItem(conn);
-			System.out.println(booking.toString());
-			System.out.println("Press enter to continue...");
+			if(booking != null) {
+				System.out.println(booking.toString());
+				System.out.println("Press enter to continue...");
+			}
+			
 			pause.nextLine();
 		} while(booking != null);
-		
+		pause.nextLine();
 		pause.close();
 		
 	}

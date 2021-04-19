@@ -22,11 +22,14 @@ public class ReadTravelersMenu implements Menu {
 		Scanner pause = new Scanner(System.in);
 		do {
 			passenger = display.getItem(conn);
-			System.out.println(passenger.toString());
-			System.out.println("Press enter to continue...");
+			if(passenger != null) {
+				System.out.println(passenger.toString());
+				System.out.println("Press enter to continue...");
+			}
+			
 			pause.nextLine();
 		} while(passenger != null);
-		
+		pause.nextLine();
 		pause.close();
 		
 	}

@@ -61,7 +61,7 @@ public class UpdateEmployeeMenu implements Menu {
 			System.out.print("Id number: ");
 			Integer id = input.nextInt();
 			udao.getData("update user set id = ? where ?", id, workingUser.getId());
-
+			input.nextLine();
 			input.close();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

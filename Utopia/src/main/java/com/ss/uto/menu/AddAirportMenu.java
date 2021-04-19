@@ -50,7 +50,8 @@ public class AddAirportMenu implements Menu {
 			throw new IllegalArgumentException();
 		}
 		port.setCityName(city);
-
+		//clear the input for the any other menues that might become confused
+		input.nextLine();
 		input.close();
 		AirportDAO adao = new AirportDAO(conn);
 		try {

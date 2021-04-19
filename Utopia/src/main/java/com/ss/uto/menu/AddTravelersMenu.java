@@ -43,7 +43,8 @@ public class AddTravelersMenu implements Menu {
 		passenger.setFamilyName(familyName);
 		passenger.setGivenName(givenName);
 		passenger.setBooking(booking);
-		
+		//clear the input for the any other menues that might become confused
+		input.nextLine();
 		input.close();
 		
 		try {

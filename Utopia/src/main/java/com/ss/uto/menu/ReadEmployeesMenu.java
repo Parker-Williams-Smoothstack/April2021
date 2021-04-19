@@ -22,11 +22,15 @@ public class ReadEmployeesMenu implements Menu {
 		Scanner pause = new Scanner(System.in);
 		do {
 			employee = selectionMenu.getItem(conn);
-			System.out.println(employee.toString());
-			System.out.println("Press enter to contine...");
+			if(employee != null) {
+				System.out.println(employee.toString());
+				System.out.println("Press enter to contine...");
+			}
+			
 			pause.nextInt();
 			
 		} while( employee != null);
+		pause.nextLine();
 		pause.close();
 	}
 

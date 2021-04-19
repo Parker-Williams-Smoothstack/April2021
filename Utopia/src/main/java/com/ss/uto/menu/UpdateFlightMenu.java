@@ -52,7 +52,7 @@ public class UpdateFlightMenu implements Menu{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		input.nextLine();
 		input.close();
 		
 		

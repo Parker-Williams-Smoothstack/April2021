@@ -22,21 +22,26 @@ public class ReadSeatsMenu implements Menu {
 		String option = "y";
 		do {
 			Flight flight = menu.getItem(conn);
-			System.out.println("Selected flight " + flight);
-			System.out.println("Available seats for flight: "
-					+ (flight.getPlane().getType().getCapacity() - flight.getReservedSeats()));
-			System.out.println("Reserved seats for flight: " + flight.getReservedSeats());
+			if (flight != null) {
+				System.out.println("Selected flight " + flight);
+				System.out.println("Available seats for flight: "
+						+ (flight.getPlane().getType().getCapacity() - flight.getReservedSeats()));
+				System.out.println("Reserved seats for flight: " + flight.getReservedSeats());
 
-			System.out.println("Lookup more seats? (y/n)");
-			option = input.nextLine();
+				System.out.println("Lookup more seats? (y/n)");
+				option = input.nextLine();
 
-			if (option.equals("")) {
+				if (option.equals("")) {
+					input.close();
+					return;
+				}
+			} else {
 				input.close();
 				return;
 			}
 
 		} while (option.toLowerCase().charAt(0) == 'y');
-
+		input.nextLine();
 		input.close();
 
 	}

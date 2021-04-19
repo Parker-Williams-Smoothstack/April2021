@@ -23,11 +23,13 @@ public class ReadAirportsMenu implements Menu {
 		Scanner pause = new Scanner(System.in);
 		do {
 			port = display.getItem(conn);
-			System.out.println(port.toString());
-			System.out.println("Press enter to continue...");
+			if(port != null) {
+				System.out.println(port.toString());
+				System.out.println("Press enter to continue...");
+			}			
 			pause.nextLine();
 		} while(port != null);
-		
+		pause.nextLine();
 		pause.close();
 	}
 	

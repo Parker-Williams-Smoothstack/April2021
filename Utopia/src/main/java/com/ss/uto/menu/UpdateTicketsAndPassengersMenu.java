@@ -31,7 +31,7 @@ public class UpdateTicketsAndPassengersMenu implements Menu {
 		} else {
 			updatingBooking.setActive(false);
 		}
-
+		input.nextLine();
 		input.close();
 		try {
 			bdao.update(updatingBooking);

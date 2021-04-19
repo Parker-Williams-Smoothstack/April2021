@@ -41,6 +41,8 @@ public class AddFlightMenu implements Menu {
 			switch (input.nextInt()) {
 			case 0:
 				// cancel the whole operation
+				//clear the input for the any other menues that might become confused
+				input.nextLine();
 				input.close();
 				throw new SQLException();
 			case 2:
@@ -57,6 +59,8 @@ public class AddFlightMenu implements Menu {
 		RouteDAO rdao = new RouteDAO(conn);
 
 		if (destPort == null) {
+			//clear the input for the any other menues that might become confused
+			input.nextLine();
 			input.close();
 			throw new SQLException();
 		}
@@ -75,6 +79,8 @@ public class AddFlightMenu implements Menu {
 				route = routes.get(0);
 			}
 		} catch (ClassNotFoundException e) {
+			//clear the input for the any other menues that might become confused
+			input.nextLine();
 			input.close();
 			e.printStackTrace();
 		}

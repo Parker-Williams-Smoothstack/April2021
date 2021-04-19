@@ -42,7 +42,7 @@ public class OverrideCancellationMenu implements Menu {
 		} else {
 			System.out.println("Operation canceled");
 		}
-
+		input.nextLine();
 		input.close();
 
 	}

@@ -43,7 +43,7 @@ public class UpdateTravelerMenu implements Menu {
 		passenger.setFamilyName(familyName);
 		passenger.setGivenName(givenName);
 		passenger.setBooking(booking);
-		
+		input.nextLine();
 		input.close();
 		
 		try {
