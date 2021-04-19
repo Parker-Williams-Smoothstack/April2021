@@ -25,12 +25,11 @@ public class ReadTicketsAndPassengersMenu implements Menu {
 			if(booking != null) {
 				System.out.println(booking.toString());
 				System.out.println("Press enter to continue...");
+				pause.nextLine();
 			}
 			
-			pause.nextLine();
+
 		} while(booking != null);
-		pause.nextLine();
-		pause.close();
 		
 	}
 

@@ -25,11 +25,10 @@ public class ReadFlightsMenu implements Menu {
 			if(flight != null) {
 				System.out.println(flight);
 				System.out.println("Please press enter to continue...");
+				pause.nextLine();
 			}			
-			pause.nextLine();
+			
 		} while (flight != null);
-		pause.nextLine();
-		pause.close();
 
 	}
 

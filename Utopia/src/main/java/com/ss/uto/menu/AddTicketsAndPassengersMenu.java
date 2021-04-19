@@ -35,7 +35,6 @@ public class AddTicketsAndPassengersMenu implements Menu {
 		}
 		//clear the input for the any other menues that might become confused
 		input.nextLine();
-		input.close();
 		try {
 			bdao.add(booking);
 		} catch (ClassNotFoundException e) {

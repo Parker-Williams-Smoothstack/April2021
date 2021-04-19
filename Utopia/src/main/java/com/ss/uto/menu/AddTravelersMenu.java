@@ -45,7 +45,7 @@ public class AddTravelersMenu implements Menu {
 		passenger.setBooking(booking);
 		//clear the input for the any other menues that might become confused
 		input.nextLine();
-		input.close();
+		 
 		
 		try {
 			pdao.add(passenger);

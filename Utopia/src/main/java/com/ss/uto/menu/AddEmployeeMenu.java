@@ -55,7 +55,7 @@ public class AddEmployeeMenu implements Menu {
 		// it how it is.
 		UserRoleDAO urdao = new UserRoleDAO(conn);
 		UserRole role;
-		
+
 		try {
 			role = urdao.getData("select * from user_role where id = ?", role_id).get(0);
 			workingUser.setRole(role);
@@ -63,9 +63,6 @@ public class AddEmployeeMenu implements Menu {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		//clear the input for the any other menues that might become confused
-		input.nextLine();
-		input.close();
 
 	}
 

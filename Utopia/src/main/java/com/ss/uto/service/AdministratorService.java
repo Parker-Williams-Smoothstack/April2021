@@ -53,18 +53,21 @@ public class AdministratorService {
 
 	public void mainAdminMenu() throws SQLException {
 
-		System.out.println("1) Manage flights");
-		System.out.println("2) Manage seats");
-		System.out.println("3) Manage tickets");
-		System.out.println("4) Manage airports");
-		System.out.println("5) Manage travelers");
-		System.out.println("6) Manage employees");
-		System.out.println("7) Manage cancellations");
-		System.out.println("8) Quit");
+		
 
-		Scanner input = new Scanner(System.in);
-		Integer choice = input.nextInt();
+		Scanner input;
+		Integer choice;
 		do {
+			System.out.println("1) Manage flights");
+			System.out.println("2) Manage seats");
+			System.out.println("3) Manage tickets");
+			System.out.println("4) Manage airports");
+			System.out.println("5) Manage travelers");
+			System.out.println("6) Manage employees");
+			System.out.println("7) Manage cancellations");
+			System.out.println("8) Quit");
+			input = new Scanner(System.in);
+			choice = input.nextInt();
 			switch (choice) {
 			case 1:
 				flightMenu();
@@ -89,7 +92,6 @@ public class AdministratorService {
 				break;
 			case 8:
 			default:
-				input.close();
 				return;
 
 			}
@@ -105,7 +107,6 @@ public class AdministratorService {
 		System.out.println("5) Cancel");
 		Scanner input = new Scanner(System.in);
 		Integer choice = input.nextInt();
-
 		switch (choice) {
 		case 1:
 			readEmployee();
@@ -121,11 +122,9 @@ public class AdministratorService {
 			break;
 		case 5:
 		default:
-			input.close();
 			return;
 
 		}
-		input.close();
 
 	}
 
@@ -137,7 +136,6 @@ public class AdministratorService {
 		System.out.println("5) Cancel");
 		Scanner input = new Scanner(System.in);
 		Integer choice = input.nextInt();
-
 		switch (choice) {
 		case 1:
 			readTraveler();
@@ -153,11 +151,9 @@ public class AdministratorService {
 			break;
 		case 5:
 		default:
-			input.close();
 			return;
 
 		}
-		input.close();
 
 	}
 
@@ -185,11 +181,8 @@ public class AdministratorService {
 			break;
 		case 5:
 		default:
-			input.close();
 			return;
-
 		}
-		input.close();
 
 	}
 
@@ -217,11 +210,9 @@ public class AdministratorService {
 			break;
 		case 5:
 		default:
-			input.close();
 			return;
 
 		}
-		input.close();
 
 	}
 
@@ -249,11 +240,9 @@ public class AdministratorService {
 			break;
 		case 5:
 		default:
-			input.close();
 			return;
 
 		}
-		input.close();
 
 	}
 
@@ -281,11 +270,9 @@ public class AdministratorService {
 			break;
 		case 5:
 		default:
-			input.close();
 			return;
 
 		}
-		input.close();
 
 	}
 

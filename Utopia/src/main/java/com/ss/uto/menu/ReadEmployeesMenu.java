@@ -25,13 +25,9 @@ public class ReadEmployeesMenu implements Menu {
 			if(employee != null) {
 				System.out.println(employee.toString());
 				System.out.println("Press enter to contine...");
-			}
-			
-			pause.nextInt();
-			
+				pause.nextLine();
+			}			
 		} while( employee != null);
-		pause.nextLine();
-		pause.close();
 	}
 
 }

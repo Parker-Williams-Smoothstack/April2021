@@ -35,9 +35,6 @@ public class DeleteTravelerMenu implements Menu {
 		} else {
 			System.out.println("Deletion canceled.");
 		}
-		//clear the input for the any other menues that might become confused
-		input.nextLine();
-		input.close();
 
 	}
 

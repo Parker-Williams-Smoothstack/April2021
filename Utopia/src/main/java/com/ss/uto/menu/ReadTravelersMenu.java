@@ -25,12 +25,11 @@ public class ReadTravelersMenu implements Menu {
 			if(passenger != null) {
 				System.out.println(passenger.toString());
 				System.out.println("Press enter to continue...");
+				pause.nextLine();
 			}
 			
-			pause.nextLine();
+
 		} while(passenger != null);
-		pause.nextLine();
-		pause.close();
 		
 	}
 

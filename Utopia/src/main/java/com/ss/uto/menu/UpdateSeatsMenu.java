@@ -43,8 +43,6 @@ public class UpdateSeatsMenu implements Menu {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		input.nextLine();
-		input.close();
 
 	}
 

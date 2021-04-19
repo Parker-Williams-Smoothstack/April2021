@@ -39,35 +39,29 @@ public class GetRouteMenu implements GetMenu<Route> {
 				case 0:
 					System.out.println("Exiting the Route Selection Menu");
 					input.nextLine();
-					input.close();
 					return null;
 				case 1:
 					input.nextLine();
-					input.close();
 					return list.get(7 * page);
 				case 2:
 					input.nextLine();
-					input.close();
 					return list.get((7 * page) + 1);
 				case 3:
 					input.nextLine();
-					input.close();
 					return list.get((7 * page) + 2);
 				case 4:
 					input.nextLine();
-					input.close();
 					return list.get((7 * page) + 3);
 				case 5:
 					input.nextLine();
-					input.close();
 					return list.get((7 * page) + 4);
 				case 6:
 					input.nextLine();
-					input.close();
+
 					return list.get((7 * page) + 5);
 				case 7:
 					input.nextLine();
-					input.close();
+
 					return list.get((7 * page) + 6);
 				case 8:
 					if (page > 0)

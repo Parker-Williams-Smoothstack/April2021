@@ -56,7 +56,6 @@ public class TravelerService {
 			}
 
 		} while (number != 0);
-		input.close();
 	}
 
 	public void menuTwo() throws SQLException, ClassNotFoundException {

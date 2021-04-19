@@ -22,8 +22,7 @@ public class MainMenu {
 	 * @throws ClassNotFoundException 
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		System.out.println("Welcome to the Utopia Airlines Management System. Which category of a user are you?"
-				+ "\n1) Employee" + "\n2) Administrator" + "\n3) Traveler");
+		
 		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		Integer choice;
@@ -32,6 +31,8 @@ public class MainMenu {
 		AdministratorService admin = new AdministratorService();
 		TravelerService traveler = new TravelerService();
 		do {
+			System.out.println("Welcome to the Utopia Airlines Management System. Which category of a user are you?"
+					+ "\n1) Employee" + "\n2) Administrator" + "\n3) Traveler");
 			choice = input.nextInt();
 			switch (choice) {
 			case 1:

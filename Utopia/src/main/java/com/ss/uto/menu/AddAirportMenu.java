@@ -25,13 +25,12 @@ public class AddAirportMenu implements Menu {
 		String code = input.nextLine();
 		if (code.equals("")) {
 			// User chose to stop
-			conn.close();
-			input.close();
+			conn.close();			 
 			return;
 		}
 		if (!code.matches("\\D\\D\\D")) {
 			System.err.println("\nERROR: Airport code must be three letters long exactly.");
-			input.close();
+			 
 			throw new IllegalArgumentException();
 		}
 		port.setCode(code);
@@ -40,19 +39,15 @@ public class AddAirportMenu implements Menu {
 		String city = input.nextLine();
 		if (city.equals("")) {
 			// user chose to stop
-			conn.close();
-			input.close();
+			conn.close();			 
 			return;
 		}
 		if (city.length() > 45) {
 			System.err.println("\nInvalid city name, must be between 1 and 45 letters long.");
-			input.close();
+			 
 			throw new IllegalArgumentException();
 		}
-		port.setCityName(city);
-		//clear the input for the any other menues that might become confused
-		input.nextLine();
-		input.close();
+		port.setCityName(city); 
 		AirportDAO adao = new AirportDAO(conn);
 		try {
 			adao.add(port);

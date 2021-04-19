@@ -32,17 +32,13 @@ public class ReadSeatsMenu implements Menu {
 				option = input.nextLine();
 
 				if (option.equals("")) {
-					input.close();
 					return;
 				}
 			} else {
-				input.close();
 				return;
 			}
 
 		} while (option.toLowerCase().charAt(0) == 'y');
-		input.nextLine();
-		input.close();
 
 	}
 

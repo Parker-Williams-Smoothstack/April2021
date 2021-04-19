@@ -29,14 +29,11 @@ public class EmployeeService {
 			switch (choice) {
 			case 1:
 				manageFlight();
-				input.close();
 				break;
 			case 2:
-				input.close();
 				return;
 			default:
 				System.out.println("Invalid selection, returning to main menu.");
-				input.close();
 				return;
 			}
 		} while (true);
@@ -79,8 +76,6 @@ public class EmployeeService {
 				}
 
 			} while (!done);
-
-			input.close();
 			conn.commit();
 		} catch (SQLException e) {
 			conn.rollback();

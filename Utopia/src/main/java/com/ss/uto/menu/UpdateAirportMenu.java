@@ -26,12 +26,8 @@ public class UpdateAirportMenu implements Menu {
 		System.out.print("Please enter the new name: ");
 		String updatedName = input.nextLine();
 		if (updatedName.equals("")) {
-			input.nextLine();
-			input.close();
 			return;
 		} else if (updatedName.length() > 45) {
-			input.nextLine();
-			input.close();
 			System.err.println("City name too long, please restrict to 45 characters or less.");
 			throw new IllegalArgumentException();
 		}
@@ -45,12 +41,8 @@ public class UpdateAirportMenu implements Menu {
 		System.out.print("\nPlease enter the new 3-letter code: ");
 		String updatedCode = input.nextLine();
 		if (updatedName.equals("")) {
-			input.nextLine();
-			input.close();
 			throw new IllegalArgumentException();
 		} else if (updatedName.length() != 3) {
-			input.nextLine();
-			input.close();
 			System.err.println("City code incorrect length, must be exactly 3 characters long.");
 			throw new IllegalArgumentException();
 		}
@@ -59,8 +51,6 @@ public class UpdateAirportMenu implements Menu {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		input.nextLine();
-		input.close();
 
 	}
 

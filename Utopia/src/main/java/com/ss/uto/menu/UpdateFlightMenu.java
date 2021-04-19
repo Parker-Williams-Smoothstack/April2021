@@ -49,11 +49,8 @@ public class UpdateFlightMenu implements Menu{
 			Integer id = input.nextInt();
 			fdao.getData("update flight set id = ? where id = ?", id, flight.getId());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		input.nextLine();
-		input.close();
 		
 		
 	}

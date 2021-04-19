@@ -26,11 +26,10 @@ public class ReadAirportsMenu implements Menu {
 			if(port != null) {
 				System.out.println(port.toString());
 				System.out.println("Press enter to continue...");
+				pause.nextLine();
 			}			
-			pause.nextLine();
+			
 		} while(port != null);
-		pause.nextLine();
-		pause.close();
 	}
 	
 
