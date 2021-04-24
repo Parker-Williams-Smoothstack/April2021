@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.ss.uto.de.Airport;
+import com.ss.utopia.de.Airport;
 
 
 /**

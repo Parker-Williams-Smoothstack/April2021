@@ -7,14 +7,19 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.ss.uto.dao.AirportDAO;
-import com.ss.uto.de.Airport;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ss.utopia.dao.AirportDAO;
+import com.ss.utopia.de.Airport;
 
 /**
  * @author Parker W.
  *
  */
 public class AddAirportMenu implements Menu {
+	
+	@Autowired 
+	AirportDAO adao;
 
 	@Override
 	public void operate(Connection conn) throws SQLException {
@@ -47,13 +52,8 @@ public class AddAirportMenu implements Menu {
 			 
 			throw new IllegalArgumentException();
 		}
-		port.setCityName(city); 
-		AirportDAO adao = new AirportDAO(conn);
-		try {
-			adao.add(port);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		port.setCityName(city);
+		adao.create(port);
 	}
 
 }

@@ -45,9 +45,9 @@ public class MainMenu {
 				traveler.menuOne();
 				break;
 			default:
-				System.out.println("Unrecognized role, please chose either 1, 2, or 3");
+				System.out.println("Unrecognized role. Please chose either 1, 2, or 3");
 			}
-		} while (true);// specifications imply that this should go forever
+		} while (true);
 
 	}
 

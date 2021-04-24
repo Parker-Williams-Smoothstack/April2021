@@ -24,7 +24,7 @@ public class AddFlightMenu implements Menu {
 		// Get the origin airport
 		Flight flight = new Flight();
 		FlightDAO fdao = new FlightDAO(conn);
-		GetAirportMenu airportMenu = new GetAirportMenu();
+		GetAirportMenu airportMenu = new GetAirportMenu();	
 		Scanner input = new Scanner(System.in);
 		Airport destPort = null;
 		Route route = null;

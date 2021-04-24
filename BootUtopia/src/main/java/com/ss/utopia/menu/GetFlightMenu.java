@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.ss.uto.dao.FlightDAO;
-import com.ss.uto.de.Flight;
+import com.ss.utopia.dao.FlightDAO;
+import com.ss.utopia.de.Flight;
 
 /**
  * @author Parker W.

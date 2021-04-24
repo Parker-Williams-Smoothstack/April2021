@@ -7,8 +7,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import com.ss.uto.dao.AirportDAO;
-import com.ss.uto.de.Airport;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ss.utopia.dao.AirportDAO;
+import com.ss.utopia.de.Airport;
 
 /**
  * @author Parker W.
@@ -16,11 +18,13 @@ import com.ss.uto.de.Airport;
  */
 public class UpdateAirportMenu implements Menu {
 
+	@Autowired
+	AirportDAO adao;
+
 	@Override
 	public void operate(Connection conn) throws SQLException {
 		Airport updatingAirport = new GetAirportMenu().getItem(conn);
 		Scanner input = new Scanner(System.in);
-		AirportDAO adao = new AirportDAO(conn);
 
 		// get the new airport name
 		System.out.print("Please enter the new name: ");
@@ -32,25 +36,23 @@ public class UpdateAirportMenu implements Menu {
 			throw new IllegalArgumentException();
 		}
 		updatingAirport.setCityName(updatedName);
-		try {
-			adao.update(updatingAirport);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		adao.update(updatingAirport);
 
-		System.out.print("\nPlease enter the new 3-letter code: ");
-		String updatedCode = input.nextLine();
-		if (updatedName.equals("")) {
-			throw new IllegalArgumentException();
-		} else if (updatedName.length() != 3) {
-			System.err.println("City code incorrect length, must be exactly 3 characters long.");
-			throw new IllegalArgumentException();
-		}
-		try {
-			adao.getData("update airport set iada_id = ? where city = ?", updatedCode, updatedName);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		// iata_id is unique, shouldn't allow for changing that
+//
+//		System.out.print("\nPlease enter the new 3-letter code: ");
+//		String updatedCode = input.nextLine();
+//		if (updatedName.equals("")) {
+//			throw new IllegalArgumentException();
+//		} else if (updatedName.length() != 3) {
+//			System.err.println("City code incorrect length, must be exactly 3 characters long.");
+//			throw new IllegalArgumentException();
+//		}
+//		try {
+//			adao.update("update airport set iada_id = ? where city = ?", updatedCode, updatedName);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 

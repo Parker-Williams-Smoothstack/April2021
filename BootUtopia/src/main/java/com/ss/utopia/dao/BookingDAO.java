@@ -1,21 +1,23 @@
 package com.ss.utopia.dao;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.uto.de.Booking;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
-public class BookingDAO extends AbstractDAO<Booking> {
+import com.ss.utopia.de.Booking;
 
-	public BookingDAO(Connection conn) {
-		super(conn);
-	}
+@Repository
+public class BookingDAO extends AbstractDAO<Booking> implements ResultSetExtractor<List<Booking>>{
 
 	@Override
-	public List<Booking> parseData(ResultSet rs) throws ClassNotFoundException, SQLException {
+	public List<Booking> extractData(ResultSet rs) throws SQLException {
 		List<Booking> list = new ArrayList<>();
 		while (rs.next()) {
 			Booking obj = new Booking();
@@ -28,27 +30,42 @@ public class BookingDAO extends AbstractDAO<Booking> {
 	}
 
 	@Override
-	public Integer add(Booking obj) throws ClassNotFoundException, SQLException {
-		Integer key = super.addPK("INSERT INTO booking (is_active, confirmation_code) VALUES (?,?)", obj.isActive(), obj.getConfirmationCode());
+	public Integer create(Booking obj){
+		String query = "INSERT INTO booking (is_active, confirmation_code) VALUES (?,?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(connection -> {
+			PreparedStatement ps = connection.prepareStatement(query, new String[] { "id" });
+			ps.setBoolean(1, obj.isActive());
+			ps.setString(2, obj.getConfirmationCode());
+			return ps;
+		}, keyHolder);
+		Integer key = keyHolder.getKey().intValue();
 		obj.setId(key);
 		return key;
 	}
 
 	@Override
-	public void update(Booking obj) throws ClassNotFoundException, SQLException {
-		super.update("UPDATE booking set is_active = ?, confirmation_code = ? where id = ?", obj.isActive(), obj.getConfirmationCode(), obj.getId());
+	public void update(Booking obj){
+		jdbcTemplate.update("UPDATE booking set is_active = ?, confirmation_code = ? where id = ?", obj.isActive(), obj.getConfirmationCode(), obj.getId());
 		
 	}
 
 	@Override
-	public void delete(Booking obj) throws ClassNotFoundException, SQLException {
-		super.update("delete from booking where id = ?", obj.getId());
+	public void delete(Booking obj){
+		jdbcTemplate.update("delete from booking where id = ?", obj.getId());
 		
 	}
 
 	@Override
-	public List<Booking> getAll() throws ClassNotFoundException, SQLException {
-		return super.getData("select * from booking");
+	public List<Booking> getAll(){
+		return jdbcTemplate.query("select * from booking", this);
 	}
+
+	@Override
+	public List<Booking> getData(String query, Object... params) {
+		return jdbcTemplate.query(query, this, params);
+	}
+	
+	
 
 }

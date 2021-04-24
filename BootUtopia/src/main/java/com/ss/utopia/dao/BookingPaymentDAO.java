@@ -3,29 +3,34 @@
  */
 package com.ss.utopia.dao;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.uto.de.BookingPayment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
+import com.ss.utopia.de.BookingPayment;
 /**
  * @author Parker W.
  *
  */
-public class BookingPaymentDAO extends AbstractDAO<BookingPayment> {
+@Repository
+public class BookingPaymentDAO extends AbstractDAO<BookingPayment> implements ResultSetExtractor<List<BookingPayment>>{
+	
+	@Autowired
+	BookingDAO bdao;
 
-	public BookingPaymentDAO(Connection conn) {
-		super(conn);
-	}
 
 	@Override
-	public List<BookingPayment> parseData(ResultSet rs) throws ClassNotFoundException, SQLException {
+	public List<BookingPayment> extractData(ResultSet rs) throws SQLException {
 		List<BookingPayment> payments = new ArrayList<>();
 		while(rs.next()) {
-			BookingDAO bdao = new BookingDAO(conn);
 			BookingPayment payment = new BookingPayment();
 			
 			payment.setBooking(bdao.getData("select * from booking where id = ?", rs.getInt("booking_id")).get(0));
@@ -40,29 +45,43 @@ public class BookingPaymentDAO extends AbstractDAO<BookingPayment> {
 	}
 
 	@Override
-	public Integer add(BookingPayment obj) throws ClassNotFoundException, SQLException {
-		return super.addPK("INSERT INTO booking_payment (booking_id, stripe_id, refunded) VALUES (?,?,?)",
-				obj.getBooking().getId(), obj.getStripeId(), obj.isRefunded());
+	public Integer create(BookingPayment obj) {
+
+		String query = "INSERT INTO booking_payment (booking_id, stripe_id, refunded) VALUES (?,?,?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(connection -> {
+			PreparedStatement ps = connection.prepareStatement(query, new String[] {});
+			ps.setInt(1, obj.getBooking().getId());
+			ps.setString(2, obj.getStripeId());
+			ps.setBoolean(3, obj.isRefunded());
+			return ps;
+		}, keyHolder);
+		return null; //does not have a unique/generated key
 	}
 
 	@Override
-	public void update(BookingPayment obj) throws ClassNotFoundException, SQLException {
-		super.update("update booking_payment set stripe_id = ?, refunded = ? where booking_id = ?", obj.getStripeId(),
+	public void update(BookingPayment obj){
+		jdbcTemplate.update("update booking_payment set stripe_id = ?, refunded = ? where booking_id = ?", obj.getStripeId(),
 				obj.isRefunded(), obj.getBooking().getId());
 
 	}
 
 	@Override
-	public void delete(BookingPayment obj) throws ClassNotFoundException, SQLException {
-		super.update("delete from booking_payment where booking_id = ?", obj.getBooking().getId());	
+	public void delete(BookingPayment obj){
+		jdbcTemplate.update("delete from booking_payment where booking_id = ?", obj.getBooking().getId());	
 		//booking_id isn't actually unique here so this could delete multiple entries, need to watch?
 		
 
 	}
 
 	@Override
-	public List<BookingPayment> getAll() throws ClassNotFoundException, SQLException {
-		return super.getData("select * from booking_payment");
+	public List<BookingPayment> getAll(){
+		return jdbcTemplate.query("select * from booking_payment", this);
+	}
+	
+	@Override
+	public List<BookingPayment> getData(String query, Object... params) {
+		return jdbcTemplate.query(query, this, params);
 	}
 
 }

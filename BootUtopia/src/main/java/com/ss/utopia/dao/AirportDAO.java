@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ss.utopia.de.Airport;
 
@@ -50,6 +51,7 @@ public class AirportDAO extends AbstractDAO<Airport> implements ResultSetExtract
 	}
 
 	@Override
+	@GetMapping("/airports")
 	public List<Airport> getAll() {
 		return jdbcTemplate.query("SELECT * FROM airport", this);
 	}

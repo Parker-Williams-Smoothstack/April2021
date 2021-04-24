@@ -1,21 +1,24 @@
 package com.ss.utopia.dao;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.uto.de.UserRole;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
-public class UserRoleDAO extends AbstractDAO<UserRole> {
+import com.ss.utopia.de.UserRole;
 
-	public UserRoleDAO(Connection conn) {
-		super(conn);
-	}
+@Repository
+public class UserRoleDAO extends AbstractDAO<UserRole> implements ResultSetExtractor<List<UserRole>>{
+
 
 	@Override
-	public List<UserRole> parseData(ResultSet rs) throws ClassNotFoundException, SQLException {
+	public List<UserRole> extractData(ResultSet rs) throws SQLException{
 		List<UserRole> list = new ArrayList<>();
 		while (rs.next()) {
 			UserRole obj = new UserRole();
@@ -27,27 +30,39 @@ public class UserRoleDAO extends AbstractDAO<UserRole> {
 	}
 
 	@Override
-	public Integer add(UserRole obj) throws ClassNotFoundException, SQLException {
-		Integer key = super.addPK("INSERT INTO user_role (name) VALUES (?)", obj.getName());
+	public Integer create(UserRole obj){
+		String query = "INSERT INTO user_role (name) VALUES (?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(connection -> {
+			PreparedStatement ps = connection.prepareStatement(query, new String[] { "id" });
+			ps.setString(1, obj.getName());
+			return ps;
+		}, keyHolder);
+		Integer key = keyHolder.getKey().intValue();
 		obj.setId(key);
 		return key;
 	}
 
 	@Override
-	public void update(UserRole obj) throws ClassNotFoundException, SQLException {
-		super.update("update user_role set name = ? where id = ?", obj.getName(), obj.getId());
+	public void update(UserRole obj){
+		jdbcTemplate.update("update user_role set name = ? where id = ?", obj.getName(), obj.getId());
 		
 	}
 
 	@Override
-	public void delete(UserRole obj) throws ClassNotFoundException, SQLException {
-		super.update("delete from user_role where id = ?", obj.getId());
+	public void delete(UserRole obj){
+		jdbcTemplate.update("delete from user_role where id = ?", obj.getId());
 		
 	}
 
 	@Override
-	public List<UserRole> getAll() throws ClassNotFoundException, SQLException {
-		return super.getData("select * from user_role");
+	public List<UserRole> getAll(){
+		return jdbcTemplate.query("select * from user_role", this);
+	}
+
+	@Override
+	public List<UserRole> getData(String query, Object... params) {
+		return jdbcTemplate.query(query, this, params);
 	}
 
 }

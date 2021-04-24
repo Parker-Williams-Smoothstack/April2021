@@ -3,26 +3,32 @@
  */
 package com.ss.utopia.dao;
 
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ss.uto.de.AirplaneType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
+
+import com.ss.utopia.de.AirplaneType;
 
 /**
  * @author Parker W.
  *
  */
-public class AirplaneTypeDAO extends AbstractDAO<AirplaneType> {
+@Repository
+public class AirplaneTypeDAO extends AbstractDAO<AirplaneType> implements ResultSetExtractor<List<AirplaneType>> {
 
-	public AirplaneTypeDAO(Connection conn) {
-		super(conn);
-	}
+	@Autowired
+	AirportDAO adao;
 
 	@Override
-	public List<AirplaneType> parseData(ResultSet rs) throws ClassNotFoundException, SQLException {
+	public List<AirplaneType> extractData(ResultSet rs) throws SQLException {
 		List<AirplaneType> types = new ArrayList<>();
 		while (rs.next()) {
 			AirplaneType type = new AirplaneType();
@@ -34,29 +40,39 @@ public class AirplaneTypeDAO extends AbstractDAO<AirplaneType> {
 	}
 
 	@Override
-	public Integer add(AirplaneType obj) throws ClassNotFoundException, SQLException {
-		Integer key = super.addPK("INSERT INTO airplane_type (max_capacity) VALUES (?)",
-				obj.getCapacity());
-		
+	public Integer create(AirplaneType obj) {
+		String query = "INSERT INTO airplane_type (max_capacity) VALUES (?)";
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		jdbcTemplate.update(connection -> {
+			PreparedStatement ps = connection.prepareStatement(query, new String[] { "id" });
+			ps.setInt(1, obj.getCapacity());
+			return ps;
+		}, keyHolder);
+		Integer key = keyHolder.getKey().intValue();
 		obj.setType(key);
 		return key;
 	}
 
 	@Override
-	public void update(AirplaneType obj) throws ClassNotFoundException, SQLException {
-		super.update("UPDATE airplane_type set max_capacity = ? where id = ?", obj.getCapacity(), obj.getType());
+	public void update(AirplaneType obj) {
+		jdbcTemplate.update("UPDATE airplane_type set max_capacity = ? where id = ?", obj.getCapacity(), obj.getType());
 
 	}
 
 	@Override
-	public void delete(AirplaneType obj) throws ClassNotFoundException, SQLException {
-		super.update("DELETE FROM airplane_type where id = ?", obj.getType());
+	public void delete(AirplaneType obj) {
+		jdbcTemplate.update("DELETE FROM airplane_type where id = ?", obj.getType());
 
 	}
 
 	@Override
-	public List<AirplaneType> getAll() throws ClassNotFoundException, SQLException {
-		return super.getData("SELECT * FROM airplane_type");
+	public List<AirplaneType> getAll() {
+		return jdbcTemplate.query("SELECT * FROM airplane_type", this);
+	}
+
+	@Override
+	public List<AirplaneType> getData(String query, Object... params) {
+		return jdbcTemplate.query(query, this, params);
 	}
 
 }
